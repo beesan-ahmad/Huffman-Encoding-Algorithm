@@ -7,6 +7,7 @@ class HuffmanCoding {
     this.charFreq = charFreq;
     this.queue = [];
     this.initializePriorityQueue();
+    this.constructHuffmanTree();
   }
   initializePriorityQueue() {
     for (let i = 0; i < this.charArray.length; i++) {
@@ -20,6 +21,29 @@ class HuffmanCoding {
   
     this.queue.sort((a, b) => a.frequency - b.frequency);
   }
+
+  constructHuffmanTree() {
+    let root = null;
+  
+    while (this.queue.length > 1) {
+      const x = this.queue.shift();
+      const y = this.queue.shift();
+  
+      const internalNode = new HuffmanNode();
+      internalNode.frequency = x.frequency + y.frequency;
+      internalNode.character = '-';
+      internalNode.left = x;
+      internalNode.right = y;
+  
+      root = internalNode;
+  
+      this.queue.push(internalNode);
+      this.queue.sort((a, b) => a.frequency - b.frequency);
+    }
+  
+    this.root = root;
+  }
+  
 
  
 
