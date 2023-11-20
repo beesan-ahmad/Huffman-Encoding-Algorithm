@@ -9,10 +9,11 @@ class HuffmanCoding {
         this.constructHuffmanTree();
         this.printHuffmanCodes();
     }
-    //Sort the characters in increasing order of the frequency. These are stored in a priority queue.
+    /*Sort the characters in increasing order of the frequency. These are stored in a 
+    priority queue.*/
     initializePriorityQueue() {
         for (let i = 0; i < this.charArray.length; i++) {
-            const newNode = new HuffmanNode();// 
+            const newNode = new HuffmanNode();
             newNode.character = this.charArray[i];
             newNode.frequency = this.charFreq[i];
             newNode.left = null;
@@ -28,11 +29,16 @@ class HuffmanCoding {
         /*Remove these two minimum frequencies from queue and add the sum into the list of
          frequencies (* denote the internal nodes)*/
         while (this.queue.length > 1) {
+            /* Extract the two nodes with the minimum frequencies from the front of the 
+            priority queue.*/
             const x = this.queue.shift();
             const y = this.queue.shift();
 
             const internalNode = new HuffmanNode();
-            internalNode.frequency = x.frequency + y.frequency;// take the sum of 2 minimum frequencies then assign them to internal node.
+            // take the sum of 2 minimum frequencies then assign them to internal node.
+            internalNode.frequency = x.frequency + y.frequency;
+            /*it is not an actual character but an internal node by  assign a placeholder 
+            character (e.g., '-') to the character of the internal node*/
             internalNode.character = '-';
             internalNode.left = x;
             internalNode.right = y;
